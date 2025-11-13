@@ -1,0 +1,36 @@
+:root{
+    --coral:#E63946; --off:#C9D9C3; --teal:#0B132B; --steel:#CCFDFC; --softgreen:#84a877;
+    --ink:#1f2937; --radius:14px; --shadow:0 6px 18px rgba(0,0,0,.12); --soft:0 3px 10px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--steel);color:var(--ink);}
+
+.wrap{max-width:640px;margin:6vh auto;padding:0 16px}
+.brand{margin:0 0 14px;font-size:1.35rem;color:#fff;background:var(--teal);display:inline-block;padding:8px 12px;border-radius:10px;box-shadow:var(--soft)}
+
+.card.chat{background:#F5F3ED;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;border:2px solid var(--teal)}
+
+.row{display:flex;gap:10px;align-items:center}
+input{
+    flex:1;padding:10px 12px;border:1.5px solid var(--steel);border-radius:10px;background:#fff;outline:none;
+}
+input:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(132,168,119,.18)}
+
+button{
+    padding:10px 16px;border:none;border-radius:10px;background:var(--teal);color:#fff;cursor:pointer;
+    box-shadow:var(--soft);transition:transform .05s ease, filter .15s ease;
+}
+button:hover{filter:brightness(0.95)}
+button:active{transform:translateY(1px)}
+
+.response{
+    margin-top:14px;background:#fff;border:1.5px solid var(--steel);border-radius:10px;min-height:140px;
+    padding:12px;white-space:pre-wrap;box-shadow:inset 0 1px 3px rgba(0,0,0,.06);
+}
+
+@media (max-width:520px){
+    .row{flex-direction:column;align-items:stretch}
+    button{width:100%}
+}

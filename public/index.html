@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gemini Chat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+    <h1 class="brand">Gemini Chat</h1>
+    <div class="card chat">
+        <div class="row">
+            <input id="q" placeholder="Ask Gemini...">
+            <button onclick="ask()">Send</button>
+        </div>
+        <pre id="r" class="response"></pre>
+    </div>
+</div>
+
+<script>
+    async function ask(){
+        const q=document.getElementById('q'), r=document.getElementById('r');
+        if(!q.value.trim()) return;
+        const res=await fetch('/ask?prompt='+encodeURIComponent(q.value));
+        r.textContent=await res.text();
+    }
+</script>
+</body>
+</html>

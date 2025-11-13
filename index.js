@@ -1,17 +1,15 @@
 const { GoogleGenAI } = require("@google/genai");
-const readlineSync = require("readline-sync");
-const fs = require('fs');
+const fs = require("fs");
+const express = require("express");
+const app = express();
 
-//read key from key.txt file
-const ai = new GoogleGenAI({ apiKey: fs.readFileSync('key.txt', 'utf8') });
+//reads key from key.txt
+const ai = new GoogleGenAI({ apiKey: fs.readFileSync("key.txt","utf8").trim() });
 
-(async function main() {
-    while (true) {
-        const input = readlineSync.question("Ask Gemini: ");
-        const res = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: input,
-        });
-        console.log("\nGemini:", res.text, "\n");
-    }
-})();
+//routes
+app.use(express.static("public"));
+app.get("/ask", async (req,res)=>{
+    const r = await ai.models.generateContent({ model:"gemini-2.5-flash", contents:req.query.prompt||"" });
+    res.send(r.text);
+});
+app.listen(3000);
